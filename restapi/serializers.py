@@ -6,4 +6,4 @@ from restapi.models import FavoriteThing
 class FavoriteThingSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteThing
-        fields = ['url', 'id', 'title', 'description', 'ranking']
+        fields = ['id', 'title', 'description', 'ranking']

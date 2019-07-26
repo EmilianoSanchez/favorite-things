@@ -12,7 +12,7 @@ from django.db import models
 class FavoriteThing(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, validators=[MinLengthValidator(10)])
-    ranking = models.IntegerField(validators=[MinValueValidator(1)])
+    ranking = models.IntegerField(validators=[MinValueValidator(1)], default = 1)
     # metadata
     category = models.CharField(max_length=200) # models.ForeignKey(Category, on_delete=models.CASCADE)
     # created_date = models.DateTimeField()
