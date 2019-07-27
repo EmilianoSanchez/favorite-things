@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'restapi.apps.RestapiConfig',
     'corsheaders',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
