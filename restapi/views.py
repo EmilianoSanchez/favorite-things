@@ -1,11 +1,16 @@
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework.reverse import reverse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from restapi.models import FavoriteThing
 from restapi.serializers import FavoriteThingSerializer
 
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'favorite-things': reverse('favorite-thing-list', request=request, format=format)
+    })
 
 @api_view(['GET', 'POST'])
 def favoritething_list(request, format=None):
