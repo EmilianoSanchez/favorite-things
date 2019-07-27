@@ -3,7 +3,7 @@ from rest_framework import serializers
 from restapi.models import FavoriteThing
 
 
-class FavoriteThingSerializer(serializers.ModelSerializer):
+class FavoriteThingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FavoriteThing
-        fields = ['id', 'title', 'description', 'ranking', 'category']
+        fields = ['url', 'id', 'title', 'description', 'ranking', 'category']
