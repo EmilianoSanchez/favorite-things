@@ -5,8 +5,6 @@ import { fetchFavoriteThing } from '../../actions';
 class FavoriteThingShow extends React.Component {
   constructor(props) {
     super(props);
-
-    this.videoRef = React.createRef();
   }
 
   componentDidMount() {

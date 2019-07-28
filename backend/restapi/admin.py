@@ -1,12 +1,16 @@
 # todo/admin.py
 
 from django.contrib import admin
-from .models import FavoriteThing  # add this
+from .models import FavoriteThing, Category
 
 
-class FavoriteThingAdmin(admin.ModelAdmin):  # add this
+class FavoriteThingAdmin(admin.ModelAdmin):
     model = FavoriteThing
 
 
-# Register your models here.
-admin.site.register(FavoriteThing, FavoriteThingAdmin)  # add this
+class CategoryAdmin(admin.ModelAdmin):
+    model = Category
+
+
+admin.site.register(FavoriteThing, FavoriteThingAdmin)
+admin.site.register(Category, CategoryAdmin)
