@@ -33,3 +33,16 @@ class FavoriteThing(models.Model):
             FavoriteThing.updateOtherRankings(ranking + 1, category)
             entry_set[0].ranking += 1
             entry_set[0].save()
+
+
+class Enum(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    values = models.TextField(unique=True, validators=[])
+
+
+class Metadata(models.Model):
+    favorite_thing = models.ForeignKey(FavoriteThing, on_delete=models.CASCADE)
+    key = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    enum = models.ForeignKey(Enum, on_delete=models.CASCADE, null=True)
+    value = models.TextField()

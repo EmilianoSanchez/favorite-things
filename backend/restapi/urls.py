@@ -6,6 +6,8 @@ from restapi import views
 router = DefaultRouter()
 router.register(r'favorite-things', views.FavoriteThingViewSet)
 router.register(r'categories', views.CategoryViewSet)
+router.register(r'metadatas', views.MetadataViewSet)
+router.register(r'enums', views.EnumViewSet)
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
