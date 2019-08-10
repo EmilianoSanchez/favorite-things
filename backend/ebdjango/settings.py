@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'restapi.apps.RestapiConfig',
     'corsheaders',
-    'frontend'
+    'frontend',
+    'auditlog',
 ]
 
 MIDDLEWARE = [

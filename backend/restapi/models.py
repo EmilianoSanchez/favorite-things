@@ -1,3 +1,4 @@
+from auditlog.registry import auditlog
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 
@@ -21,7 +22,8 @@ class FavoriteThing(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        FavoriteThing.updateOtherRankings(ranking=self.ranking, category=self.category)
+        if self._state.adding is True or FavoriteThing.objects.get(pk=self.pk).ranking != self.ranking:
+            FavoriteThing.updateOtherRankings(ranking=self.ranking, category=self.category)
         super().save(*args, **kwargs)
 
     @staticmethod
@@ -61,3 +63,9 @@ class Metadata(models.Model):
 
     class Meta:
         unique_together = ('favorite_thing', 'key')
+
+
+auditlog.register(Category)
+auditlog.register(FavoriteThing, exclude_fields=['created_date', 'modified_date'])
+auditlog.register(Enum)
+auditlog.register(Metadata)

@@ -1,6 +1,7 @@
 import datetime
 import re
 
+from auditlog.models import LogEntry
 from rest_framework import serializers
 
 from restapi.models import FavoriteThing, Category, Metadata, Enum
@@ -83,3 +84,9 @@ class EnumSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Enum
         fields = ['url', 'id', 'name', 'values']
+
+
+class LogEntrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LogEntry
+        fields = '__all__'

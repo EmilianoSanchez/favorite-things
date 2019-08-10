@@ -8,6 +8,7 @@ router.register(r'favorite-things', views.FavoriteThingViewSet)
 router.register(r'categories', views.CategoryViewSet)
 router.register(r'metadatas', views.MetadataViewSet)
 router.register(r'enums', views.EnumViewSet)
+router.register(r'log-entries', views.LogEntryViewSet)
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [

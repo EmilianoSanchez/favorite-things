@@ -1,6 +1,7 @@
+from auditlog.models import LogEntry
 from rest_framework import viewsets
 from restapi.models import FavoriteThing, Category, Metadata, Enum
-from restapi.serializers import FavoriteThingSerializer, CategorySerializer, MetadataSerializer, EnumSerializer
+from restapi.serializers import FavoriteThingSerializer, CategorySerializer, MetadataSerializer, EnumSerializer, LogEntrySerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -21,7 +22,6 @@ class FavoriteThingViewSet(viewsets.ModelViewSet):
     serializer_class = FavoriteThingSerializer
 
 
-
 class MetadataViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -38,3 +38,11 @@ class EnumViewSet(viewsets.ModelViewSet):
     """
     queryset = Enum.objects.all()
     serializer_class = EnumSerializer
+
+
+class LogEntryViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = LogEntry.objects.all()
+    serializer_class = LogEntrySerializer
