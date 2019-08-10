@@ -7,11 +7,11 @@ class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
-        return self.name
+        return f"Category '{self.name}'"
 
 
 class FavoriteThing(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, validators=[MinLengthValidator(10)])
     ranking = models.IntegerField(validators=[MinValueValidator(1)], default=1)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -19,7 +19,7 @@ class FavoriteThing(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return f"Favorite thing '{self.title}'"
 
     def save(self, *args, **kwargs):
         if self._state.adding is True or FavoriteThing.objects.get(pk=self.pk).ranking != self.ranking:
@@ -38,6 +38,9 @@ class FavoriteThing(models.Model):
 class Enum(models.Model):
     name = models.CharField(max_length=100, unique=True)
     values = models.TextField()
+
+    def __str__(self):
+        return f"Enum '{self.name}'"
 
 
 class Metadata(models.Model):
@@ -63,6 +66,9 @@ class Metadata(models.Model):
 
     class Meta:
         unique_together = ('favorite_thing', 'key')
+
+    def __str__(self):
+        return f"Metadata '{self.key}' from Favorite Thing '{self.favorite_thing.title}'"
 
 
 auditlog.register(Category)

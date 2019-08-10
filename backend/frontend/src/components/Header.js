@@ -11,6 +11,9 @@ const Header = () => {
         <Link to="/" className="item">
           All Favorite Things
         </Link>
+        <Link to="/audit-log" className="item">
+          Audit log
+        </Link>
       </div>
     </div>
   );

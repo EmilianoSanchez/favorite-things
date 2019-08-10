@@ -7,6 +7,7 @@ import FavoriteThingList from './routes/FavoriteThingList';
 import FavoriteThingShow from './routes/FavoriteThingShow';
 import FavoriteThingMetadataDelete from './routes/FavoriteThingMetadataDelete';
 import FavoriteThingMetadataCreate from './routes/FavoriteThingMetadataCreate';
+import AuditLogList from "./routes/AuditLogList";
 import Header from './Header';
 import history from '../history';
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/favorite-things/delete/:id" exact component={FavoriteThingDelete} />
             <Route path="/favorite-things/:id" exact component={FavoriteThingShow} />
             {/*<Route path="/favorite-things/new-enum" exact component={FavoriteThingEnumCreate} />*/}
+            <Route path="/audit-log" exact component={AuditLogList} />
           </Switch>
         </div>
       </Router>
