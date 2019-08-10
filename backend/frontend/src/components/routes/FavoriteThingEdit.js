@@ -1,8 +1,9 @@
 // import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchFavoriteThing, editFavoriteThing } from '../../actions';
-import FavoriteThingForm from './FavoriteThingForm';
+import { fetchFavoriteThing, editFavoriteThing } from '../../store/actions';
+import FavoriteThingForm from '../FavoriteThingForm';
+import FavoriteThingMetadataList from '../FavoriteThingMetadataList';
 
 class FavoriteThingEdit extends React.Component {
   componentDidMount() {
@@ -18,7 +19,6 @@ class FavoriteThingEdit extends React.Component {
       return <div>Loading...</div>;
     }
 
-    console.log(this.props.favoriteThing);
     return (
       <div>
         <h3>Edit a Favorite Thing</h3>
@@ -26,16 +26,18 @@ class FavoriteThingEdit extends React.Component {
           initialValues={this.props.favoriteThing}
           onSubmit={this.onSubmit}
         />
+        <h3>Metadata</h3>
+        <FavoriteThingMetadataList favorite_thing_id={this.props.favoriteThing.id} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { favoriteThing: state.favoriteThings[ownProps.match.params.id] };
+  return { favoriteThing: state.models.favoriteThings[ownProps.match.params.id] };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchFavoriteThing: fetchFavoriteThing, editFavoriteThing: editFavoriteThing }
+  { fetchFavoriteThing, editFavoriteThing }
 )(FavoriteThingEdit);

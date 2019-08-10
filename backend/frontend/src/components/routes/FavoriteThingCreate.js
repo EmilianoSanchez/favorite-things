@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createFavoriteThing } from '../../actions';
-import FavoriteThingForm from './FavoriteThingForm';
+import { createFavoriteThing } from '../../store/actions';
+import FavoriteThingForm from '../FavoriteThingForm';
 
 class FavoriteThingCreate extends React.Component {
   onSubmit = formValues => {

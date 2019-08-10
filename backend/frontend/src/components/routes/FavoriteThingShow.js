@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchFavoriteThing } from '../../actions';
+import { fetchFavoriteThing } from '../../store/actions';
 
 class FavoriteThingShow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -30,7 +27,7 @@ class FavoriteThingShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { favoriteThing: state.favoriteThings[ownProps.match.params.id] };
+  return { favoriteThing: state.models.favoriteThings[ownProps.match.params.id] };
 };
 
 export default connect(

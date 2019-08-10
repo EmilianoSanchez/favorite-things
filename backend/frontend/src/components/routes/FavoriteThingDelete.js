@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import history from '../../history';
-import { fetchFavoriteThing, deleteFavoriteThing } from '../../actions';
+import { fetchFavoriteThing, deleteFavoriteThing } from '../../store/actions';
 
 class FavoriteThingDelete extends React.Component {
   componentDidMount() {
@@ -51,7 +51,7 @@ class FavoriteThingDelete extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { favoriteThing: state.favoriteThings[ownProps.match.params.id] };
+  return { favoriteThing: state.models.favoriteThings[ownProps.match.params.id] };
 };
 
 export default connect(

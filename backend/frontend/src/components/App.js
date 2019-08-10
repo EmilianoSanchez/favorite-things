@@ -1,10 +1,12 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import FavoriteThingCreate from './favoriteThings/FavoriteThingCreate';
-import FavoriteThingEdit from './favoriteThings/FavoriteThingEdit';
-import FavoriteThingDelete from './favoriteThings/FavoriteThingDelete';
-import FavoriteThingList from './favoriteThings/FavoriteThingList';
-import FavoriteThingShow from './favoriteThings/FavoriteThingShow';
+import FavoriteThingCreate from './routes/FavoriteThingCreate';
+import FavoriteThingEdit from './routes/FavoriteThingEdit';
+import FavoriteThingDelete from './routes/FavoriteThingDelete';
+import FavoriteThingList from './routes/FavoriteThingList';
+import FavoriteThingShow from './routes/FavoriteThingShow';
+import FavoriteThingMetadataDelete from './routes/FavoriteThingMetadataDelete';
+import FavoriteThingMetadataCreate from './routes/FavoriteThingMetadataCreate';
 import Header from './Header';
 import history from '../history';
 
@@ -18,8 +20,11 @@ const App = () => {
             <Route path="/" exact component={FavoriteThingList} />
             <Route path="/favorite-things/new" exact component={FavoriteThingCreate} />
             <Route path="/favorite-things/edit/:id" exact component={FavoriteThingEdit} />
+            <Route path="/favorite-things/edit/:favorite_thing_id/metadata/delete/:id" exact component={FavoriteThingMetadataDelete} />
+            <Route path="/favorite-things/edit/:favorite_thing_id/metadata/new" exact component={FavoriteThingMetadataCreate} />
             <Route path="/favorite-things/delete/:id" exact component={FavoriteThingDelete} />
             <Route path="/favorite-things/:id" exact component={FavoriteThingShow} />
+            {/*<Route path="/favorite-things/new-enum" exact component={FavoriteThingEnumCreate} />*/}
           </Switch>
         </div>
       </Router>

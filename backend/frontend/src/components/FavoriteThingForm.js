@@ -1,7 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { fetchCategorys} from "../store/actions";
 
 class FavoriteThingForm extends React.Component {
+
+  componentDidMount() {
+    if(this.props.categories.length === 0 )
+      this.props.fetchCategorys();
+  }
 
   renderError({ error, touched }) {
     if (touched && error) {
@@ -21,6 +28,25 @@ class FavoriteThingForm extends React.Component {
         <input {...input} autoComplete="off" />
         {this.renderError(meta)}
       </div>
+    );
+  };
+
+  renderSelect = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    return (
+        <div className={className}>
+          <label>{label}</label>
+          <select {...input} autoComplete="off" >
+            {this.props.categories.map(
+                category => {
+                  return (
+                      <option key={category.id} value={category.url}>{category.name}</option>
+                  )
+                }
+            )}
+          </select>
+          {this.renderError(meta)}
+        </div>
     );
   };
 
@@ -50,7 +76,7 @@ class FavoriteThingForm extends React.Component {
         />
         <Field
             name="category"
-            component={this.renderInput}
+            component={this.renderSelect}
             label="Enter Category"
         />
         <button className="ui button primary">Submit</button>
@@ -85,6 +111,15 @@ const validate = formValues => {
 const isPositiveInteger = s => {
   return /^\+?[1-9][\d]*$/.test(s);
 }
+
+const mapStateToProps = (state) => {
+  return { categories: Object.values(state.models.categories) };
+};
+
+FavoriteThingForm = connect(
+    mapStateToProps,
+    { fetchCategorys }
+)(FavoriteThingForm);
 
 export default reduxForm({
   form: 'favoriteThingForm',
