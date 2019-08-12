@@ -130,6 +130,7 @@ export const createEnum = formValues => async (dispatch) => {
   const response = await apiClient.post('/enums/', { ...formValues });
 
   dispatch({ type: CREATE_ENUM, payload: response.data });
+  history.push('/favorite-things/enums');
 };
 
 
@@ -137,6 +138,7 @@ export const deleteEnum = id => async dispatch => {
   await apiClient.delete(`/enums/${id}/`);
 
   dispatch({ type: DELETE_ENUM, payload: id });
+  history.push('/favorite-things/enums');
 };
 
 export const fetchEnums = () => async dispatch => {

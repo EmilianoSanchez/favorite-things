@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchMetadatas, fetchFavoriteThing, fetchEnums } from '../store/actions';
 import {Field, reduxForm, formValueSelector} from "redux-form";
 import { compose } from 'redux';
+import {Link} from "react-router-dom";
 
 class FavoriteThingMetadataForm extends React.Component {
 
@@ -157,7 +158,12 @@ class FavoriteThingMetadataForm extends React.Component {
                     component={this.renderEnumValueInput}
                     enumType={this.props.enumType}
                 />
-                {/*<button onClick={() => history.push("/favorite-things/new-enum")}>Add enum</button>*/}
+                <Link
+                    to={`/favorite-things/enums`}
+                    className="ui button"
+                >
+                    Manage enum types
+                </Link>
             </span>
             ):(
             <Field

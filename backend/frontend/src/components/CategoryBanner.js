@@ -16,7 +16,6 @@ class CategoryBanner extends React.Component {
     onSubmitAddCategory = event => {
         event.preventDefault();
         this.props.createCategory(this.state.value);
-        //FIXME
         this.setState({value: ''});
     };
 
@@ -44,7 +43,7 @@ class CategoryBanner extends React.Component {
                 </div>
                 <div className="right item">
                     <form onSubmit={this.onSubmitAddCategory} className="ui action input">
-                        <input type="text" placeholder="Add new category..." onChange={this.handleChange}/>
+                        <input type="text" placeholder="Add new category..." onChange={this.handleChange} value={this.state.value}/>
                         <button type="submit" className="ui button"  >Add</button>
                     </form>
                 </div>

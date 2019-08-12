@@ -75,7 +75,7 @@ def list_of_strings(value):
     # if not isinstance(value, str) or not pattern.match(value):
     if not pattern.match(value):
         raise serializers.ValidationError(
-            'This field must be an string with a comma separated list of values, such as "value1,value2,valueN".')
+            'This field must be a string with a comma separated list of values, such as "value1,value2,valueN".')
 
 
 class EnumSerializer(serializers.HyperlinkedModelSerializer):
