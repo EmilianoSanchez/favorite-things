@@ -1,0 +1,24 @@
+{
+  "fullName": "Luis Emiliano Sanchez",
+  "residence": "Tandil, Buenos Aires, Argentina",
+  "email": "emiliano.luis.sanchez@gmail.com",
+  "birthdate": "1988-12-15",
+  "summary": "Software Engineer & PhD in Computer Science, with over 6 years experience among academy and industry. During this time, I have focused on research and teaching activities in public institutions in Argentina and France, but I have also worked as a software engineer and mobile developer.\nAs a researcher, I am proficient in Machine Learning and Optimization techniques, applied to mobile and cloud computing domains. As a mobile developer, I have undertaken some successful applications and gained experience in technologies such as Android SDK, React Native and Firebase. I am also proficient in Java and Python development, with experience in Spring and Django frameworks.\nI consider myself a proactive and responsible engineer, used to work under pressure and always looking for new challenges involving new technologies and teamwork.\n",
+  "education": [
+    {
+      "title": "PhD in Computer Science",
+      "thesisTitle": "Optimization of Feature Models with applications for the adaptation of service compositions",
+      "graduationDate": "March/2019"
+    },
+    {
+      "title": "Systems Engineer (Software)",
+      "thesisTitle": "A Web tool for assisting the documentation of software architectures",
+      "graduationDate": "August/2013"
+    }
+  ],
+  "languages": {
+    "spanish": "native",
+    "english": "upper-intermediate",
+    "french": "basic"
+  }
+}
