@@ -20,5 +20,37 @@
     "spanish": "native",
     "english": "upper-intermediate",
     "french": "basic"
-  }
+  },
+  "workExperience": [
+    {
+      "position": "React Native developer",
+      "companyOrOrganization": "Xoor S.A.",
+      "startingDate": "May/2019",
+      "endingDate": "July/2019"
+    },
+    {
+      "position": "Software Engineer & Researcher",
+      "companyOrOrganization": "CONICET-ISISTAN Research Institute",
+      "startingDate": "April/2014",
+      "endingDate": "March/2019"
+    },
+    {
+      "position": "Freelance Android developer",
+      "companyOrOrganization": null,
+      "startingDate": "July/2014",
+      "endingDate": "July/2019"
+    },
+    {
+      "position": "Software Engineer",
+      "companyOrOrganization": "SparkDigital S.A., Apigee Corp. ",
+      "startingDate": "August/2013",
+      "endingDate": "January/2014"
+    },
+    {
+      "position": "Research Intern",
+      "companyOrOrganization": "INRIA Research Institute",
+      "startingDate": "July/2012",
+      "endingDate": "December/2012"
+    }
+  ]
 }

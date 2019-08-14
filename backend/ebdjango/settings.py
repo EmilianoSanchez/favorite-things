@@ -22,9 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'y7a=7ht659do%hi2y@+-)74f)p0v!6ip^^92(gefi57ix@y+z8'
+if 'DJANGO_SECRET_KEY' in os.environ:
+    SECRET_KEY: os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if 'RDS_HOSTNAME' in os.environ:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['django-env.5kdv3jktgi.us-west-2.elasticbeanstalk.com',
                  'localhost',
