@@ -32,7 +32,8 @@ if 'RDS_HOSTNAME' in os.environ:
 
 ALLOWED_HOSTS = ['django-env.5kdv3jktgi.us-west-2.elasticbeanstalk.com',
                  'localhost',
-                 '127.0.0.1']
+                 '127.0.0.1',
+                 '0.0.0.0']
 
 
 
@@ -103,7 +104,17 @@ if 'RDS_HOSTNAME' in os.environ:    #production
             'PORT': os.environ['RDS_PORT'],
         }
     }
-else:   #development, local environment
+elif 'DOCKER' in os.environ:   #development, docker-compose with Postgres
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
+            'PORT': 5432,
+        }
+    }
+else:   #development, local environment with SQlite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

@@ -6,6 +6,7 @@
 
 
 <a name="scripts"/>
+
 ## Scripts
 
 ### Clone repository
@@ -36,12 +37,13 @@ Prerequisites:
     ```
 
 <a name="run-project-in-local-server"/>
+
 ### Run project in local server
 
 ```bash
 (virtenv)foo@bar:~/favorite-things/backend$ python manage.py migrate
+(virtenv)foo@bar:~/favorite-things/backend$ python manage.py loaddata fixtures/fixture.json
 (virtenv)foo@bar:~/favorite-things/backend$ python manage.py runserver
-
 ```
 
 ### Run tests with code coverage
@@ -53,7 +55,19 @@ Prerequisites:
 (virtenv)foo@bar:~/favorite-things/backend$ coverage report
 ```
 
+<a name="run-project-with-docker"/>
+
+### Run project with Docker 
+
+Prerequisites:
+- docker
+
+```bash
+foo@bar:~/favorite-things/backend$ docker-compose up
+```
+
 <a name="deploy-project-in-aws-elastic-beanstalk"/>
+
 ### Deploy project in AWS Elastic BeanStalk (EB) with a RDS MySQL instance 
 
 Prerequisites:
@@ -100,6 +114,7 @@ Prerequisites:
     ```  
     
 <a name="coding-test-deliverables"/>
+
 ## Coding Test Deliverables
 
 This section explains the design and deployment methods of the coding test project, in five separate subsections.
@@ -176,10 +191,9 @@ The tests were performed with helper classes provided by Django REST Framework, 
 
 ### 4. Deployed version of the project
 
-The project can be run locally using the Django development server ([Run project in local server](#run-project-in-local-server)).
-This deployment method uses SQLite as relational database.
+The project can be run locally using the Django development server ([Run project in local server](#run-project-in-local-server)) or using Docker ([Run project with Docker](#run-project-with-docker)).
 
-The project was also deployed using AWS Elastic BeanStalk with a MySQL instance in AWS RDS ([Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk)).
+The project was also deployed using AWS Elastic BeanStalk with a MySQL instance ([Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk)).
 
 URL: http://django-env.5kdv3jktgi.us-west-2.elasticbeanstalk.com/
 
