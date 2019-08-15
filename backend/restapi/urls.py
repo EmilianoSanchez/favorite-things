@@ -14,4 +14,3 @@ router.register(r'log-entries', views.LogEntryViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
-

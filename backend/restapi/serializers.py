@@ -16,7 +16,8 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 class FavoriteThingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FavoriteThing
-        fields = ['url', 'id', 'title', 'description', 'ranking', 'category', 'category_id', 'created_date', 'modified_date']
+        fields = ['url', 'id', 'title', 'description', 'ranking',
+                  'category', 'category_id', 'created_date', 'modified_date']
 
 
 # patternType = re.compile("^(Text|Date|Number|Enum)$")
@@ -32,28 +33,33 @@ def valid_date(date_text):
     try:
         datetime.datetime.strptime(date_text, '%Y-%m-%d')
     except ValueError:
-        raise serializers.ValidationError({"value": "Incorrect date format. Should be YYYY-MM-DD."})
+        raise serializers.ValidationError(
+            {"value": "Incorrect date format. Should be YYYY-MM-DD."})
 
 
 def valid_number(value):
     try:
         float(value)
     except ValueError:
-        raise serializers.ValidationError({"value": "Incorrect date format. Should be a number."})
+        raise serializers.ValidationError(
+            {"value": "Incorrect date format. Should be a number."})
 
 
 def valid_enum(enum, value):
     if enum is None:
-        raise serializers.ValidationError({"enum": "When type field is Enum, enum field may not be blank."})
+        raise serializers.ValidationError(
+            {"enum": "When type field is Enum, enum field may not be blank."})
     if value not in enum.values.split(","):
-        raise serializers.ValidationError({"value": f"Value must be one of {enum.name} enum values: {enum.values}"})
+        raise serializers.ValidationError(
+            {"value": f"Value must be one of {enum.name} enum values: {enum.values}"})
 
 
 class MetadataSerializer(serializers.HyperlinkedModelSerializer):
     # type = serializers.CharField(validators=[valid_types])
     class Meta:
         model = Metadata
-        fields = ['url', 'id', 'key', 'type', 'enum', 'value', 'favorite_thing', 'favorite_thing_id']
+        fields = ['url', 'id', 'key', 'type', 'enum',
+                  'value', 'favorite_thing', 'favorite_thing_id']
 
     def validate(self, data):
         """

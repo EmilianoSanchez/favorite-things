@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'ebdjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-if 'RDS_HOSTNAME' in os.environ:    #production
+if 'RDS_HOSTNAME' in os.environ:  # production
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -103,7 +103,7 @@ if 'RDS_HOSTNAME' in os.environ:    #production
             'PORT': os.environ['RDS_PORT'],
         }
     }
-elif 'DOCKER' in os.environ:   #development, docker-compose with Postgres
+elif 'DOCKER' in os.environ:  # development, docker-compose with Postgres
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -113,7 +113,7 @@ elif 'DOCKER' in os.environ:   #development, docker-compose with Postgres
             'PORT': 5432,
         }
     }
-else:   #development, local environment with SQlite
+else:  # development, local environment with SQlite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

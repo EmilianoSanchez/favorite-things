@@ -29,7 +29,8 @@ class FavoriteThingTests(APITestCase):
         Test for creating a new Favorite Thing object.
         """
         category = Category.objects.get(name="food")
-        serialized_category = CategorySerializer(category, context={'request': None})
+        serialized_category = CategorySerializer(
+            category, context={'request': None})
         data = {
             'title': 'New Favorite Thing',
             'description': 'New description',
@@ -46,7 +47,8 @@ class FavoriteThingTests(APITestCase):
         Test for attempting to create a new Favorite Thing object with a description with less than 10 characters.
         """
         category = Category.objects.get(name="food")
-        serialized_category = CategorySerializer(category, context={'request': None})
+        serialized_category = CategorySerializer(
+            category, context={'request': None})
         data = {
             'title': 'New Favorite Thing',
             'description': 'Short',
@@ -64,7 +66,8 @@ class FavoriteThingTests(APITestCase):
         The ranking of the first object is incremented.
         """
         category = Category.objects.get(name="food")
-        serialized_category = CategorySerializer(category, context={'request': None})
+        serialized_category = CategorySerializer(
+            category, context={'request': None})
         category_url = serialized_category.data.get('url')
         data1 = {
             'title': 'New Favorite Thing 1',
@@ -85,7 +88,8 @@ class FavoriteThingTests(APITestCase):
         response = self.client.post(url, data2, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(FavoriteThing.objects.count(), 2)
-        rankings = {FavoriteThing.objects.all()[0].ranking, FavoriteThing.objects.all()[1].ranking}
+        rankings = {FavoriteThing.objects.all(
+        )[0].ranking, FavoriteThing.objects.all()[1].ranking}
         self.assertEqual(rankings, {1, 2})
 
 
@@ -128,7 +132,8 @@ def create_favorite_thing(title, description, ranking, category_name):
     category = Category.objects.get(name=category_name)
     favorite_thing = FavoriteThing.objects.create(title=title, description=description, ranking=ranking,
                                                   category=category)
-    serialized_favorite_thing = FavoriteThingSerializer(favorite_thing, context={'request': None})
+    serialized_favorite_thing = FavoriteThingSerializer(
+        favorite_thing, context={'request': None})
     return serialized_favorite_thing.data.get('url')
 
 
@@ -150,7 +155,8 @@ class MetadataTests(APITestCase):
         """
         Test for creating a new Metadata entry object of type Text.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -167,7 +173,8 @@ class MetadataTests(APITestCase):
         """
         Test for attempting to create a new Metadata entry object of type Text with an empty text value.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -184,7 +191,8 @@ class MetadataTests(APITestCase):
         """
         Test for creating a new Metadata entry object of type Number.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -201,7 +209,8 @@ class MetadataTests(APITestCase):
         """
         Test for attempting to create a new Metadata entry object of type Number with an invalid number value.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -218,7 +227,8 @@ class MetadataTests(APITestCase):
         """
         Test for creating a new Metadata entry object of type Date.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -235,7 +245,8 @@ class MetadataTests(APITestCase):
         """
         Test for attempting to create a new Metadata entry object of type Date with an invalid date value.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -252,7 +263,8 @@ class MetadataTests(APITestCase):
         """
         Test for creating a new Metadata entry object of type Enum.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         enum_url = create_enum("New enum", "Value1,Value2")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
@@ -270,7 +282,8 @@ class MetadataTests(APITestCase):
         """
         Test for attempting to create a new Metadata entry object of type Enum with an empty Enum type.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
             "key": "New metadata key",
@@ -287,7 +300,8 @@ class MetadataTests(APITestCase):
         """
         Test for attempting to create a new Metadata entry object of type Enum with an empty Enum type.
         """
-        favorite_thing_url = create_favorite_thing("New favorite thing", "Description", 1, "food")
+        favorite_thing_url = create_favorite_thing(
+            "New favorite thing", "Description", 1, "food")
         enum_url = create_enum("New enum", "Value1,Value2")
         url = reverse('metadata-list')  # '/api/categories/'
         data = {
