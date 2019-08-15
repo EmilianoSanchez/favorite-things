@@ -68,7 +68,7 @@ foo@bar:~/favorite-things/backend$ docker-compose up
 
 <a name="deploy-project-in-aws-elastic-beanstalk"/>
 
-### Deploy project in AWS Elastic BeanStalk (EB) with a RDS MySQL instance 
+### Deploy project in AWS Elastic BeanStalk (EB) with a RDS PostgreSQL instance 
 
 Prerequisites:
 - awsebcli
@@ -99,8 +99,24 @@ Prerequisites:
     ...
     ALLOWED_HOSTS = ['eb-django-app-dev.elasticbeanstalk.com']
     ```  
-5. [Add an Amazon RDS MySQL Instance to Your EB Environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-rds.html).
+5. [Add an Amazon RDS PostgreSQL Instance to Your EB Environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-rds.html).
+ 
+    - Open the Elastic Beanstalk console.
+    - Navigate to the management page for your environment.
+    - Choose Configuration.
+    - In the Database configuration category, choose Modify.
+    - Choose a postgree DB engine, and enter a user name and password.
+    - Choose Apply.
 
+6. Add a production environment variable for DJANGO_SECRET_KEY.
+ 
+    - Open the Elastic Beanstalk console.
+    - Navigate to the management page for your environment.
+    - Choose Configuration.
+    - In the Software configuration category, choose Modify.
+    - Add a new environment variable with name DJANGO_SECRET_KEY and a randomly generate value.
+    - Choose Apply.
+ 
 6. Commit the change, and deploy your application by running eb deploy
     ```bash
     foo@bar:~/favorite-things/backend$ git add ebdjango/settings.py
@@ -193,9 +209,9 @@ The tests were performed with helper classes provided by Django REST Framework, 
 
 The project can be run locally using the Django development server ([Run project in local server](#run-project-in-local-server)) or using Docker ([Run project with Docker](#run-project-with-docker)).
 
-The project was also deployed using AWS Elastic BeanStalk with a MySQL instance ([Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk)).
+The project was also deployed using AWS Elastic BeanStalk with a PostgreSQL instance ([Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk)).
 
-URL: http://django-env.5kdv3jktgi.us-west-2.elasticbeanstalk.com/
+URL: http://django-env.papkc68gam.us-west-2.elasticbeanstalk.com/
 
 ### 5. Frontend
 
