@@ -1,21 +1,34 @@
 # favorite-things
 
 ##### Table of Contents
-[Scripts](#scripts)
-[Coding Test Deliverables](#coding-test-deliverables)
 
+- [Scripts](#scripts)
+    - [Clone repository](#clone-repository)
+    - [Install project dependencies in virtual environment](#install-project-dependencies-in-virtual-environment)
+    - [Run project in local server](#run-project-in-local-server)
+    - [Run tests with code coverage](#run-tests-with-code-coverage)
+    - [Run project with Docker](#run-project-with-docker)
+    - [Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk-eb-with-a-rds-postgresql-instance)
+- [Coding Test Deliverables](#coding-test-deliverables)
+    - [1. Repository and code structure](#1-repository-and-code-structure)
+    - [2. Entity relationship diagram](#2-entity-relationship-diagram)
+    - [3. REST API written with Django REST framework](#3-rest-api-written-with-django-rest-framework)
+    - [4. Deployed version of the project](#4-deployed-version-of-the-project)
+    - [5. Frontend](#5-frontend)
 
 <a name="scripts"/>
 
 ## Scripts
 
 ### Clone repository
+
 ```bash
 foo@bar:~$ git clone https://github.com/EmilianoSanchez/favorite-things.git
 foo@bar:~$ cd favorite-things/backend/
 ```
 
-### Create and activate python environment
+### Install project dependencies in virtual environment
+
 Prerequisites:
 - Python +3.6
 - pip
@@ -47,6 +60,7 @@ Prerequisites:
 ```
 
 ### Run tests with code coverage
+
 Prerequisites:
 - [coverage.py](https://pypi.org/project/coverage/)
 
@@ -135,16 +149,18 @@ Prerequisites:
 
 This section explains the design and deployment methods of the coding test project, in five separate subsections.
 The first subsection presents the repository structure and describes its main files and folders. This repository contains a Django project and additional README files required by the coding test.
-The second subsection describes an entity relationship diagram that represents the domain models of the coding test.
+The second subsection presents an entity relationship diagram that represents the domain models of the coding test.
 The third subsection briefly describes the REST API that exposes these models, and how it was tested.
-The fourth subsection describes the deployment methods: in a local server for development and testing, and in AWS for production.
-The last subsection ilustrates the frontend of the app, a Single Page App build with ReactJS and delivered as part of the Django project.
+The fourth subsection describes the deployment methods: locally for development and testing, and using AWS for production.
+Finally, the last subsection ilustrates the frontend of the app, a Single Page App build with ReactJS and delivered as part of the Django project.
 
 
 ### 1. Repository and code structure
+
 ```
 favorite-things/
 ├── .gitignore
+├── .pre-commit-config.yaml
 ├── README.md
 ├── answers.md
 ├── myself.json
@@ -176,16 +192,15 @@ The following diagram depicts the 5 tables that represent the required data to t
 
 ![ER Diagram](/docs/er-diagram.png)
 
-- **category**: this table represents the categories to which favorite things may belong.
-- **favoritething**: it represents the favorite things objects that users want to create, edit, delete and track.
+- **category**: this table represents the categories to which favorite things may belong. Each category consist of an id and name. Initially, the table contain 3 records with the names _food_, _place_ and _person_.
+- **favoritething**: it represents the favorite things objects that users want to create, edit, delete and track. Each favorite thing consist of a title, a description, a category, a ranking number (mayor than 0), and a created and modified date.
 - **metadata**: it represents the metadata key/value entries that can be associated to favorite things.<br />
-  Besides the key and value attributes, metadata entries must have a **type** attribute that represents and enforces the data type of **value** attributes.
-  The **type** attribute must be one of the following values: _Text_, _Number_, _Date_, and _Enum_.<br />
+  Besides the **favorite thing id**, a **key** and **value** attributes, metadata entries must have a **type** attribute that represents and enforces the data type of **value** attributes.
+  The **type** attribute must be one of the following string values: _Text_, _Number_, _Date_, and _Enum_.<br />
   If the **type** attribute is set to _Enum_, the **Enum** attribute of the table must reference an Enum entry from table **enum**.
 - **enum**: it represents the possible enumeration types of metadata entries.
   It consists of a **name** and a **values** attributes. The **values** attribute must be a comma-separated list of values, such as "Value1,Value2,Value3", that represents the set of named values of the enum.
-- **auditlog_logentry**: the entries of this table represent the recorded changes to data on the previous 4 tables. The tracked changes (**action** attribute) are: creation of objects (SQL INSERT), edition of objects (SQL UPDATE), and deletion of objects (SQL DELETE).<br />
-  This table and its logic is implemented in the app [django-auditlog](https://github.com/jjkester/django-auditlog).
+- **auditlog_logentry**: the entries of this table represent the recorded changes to data on the previous 4 tables. The tracked changes (**action** attribute) are: creation of objects (SQL INSERT), edition of objects (SQL UPDATE), and deletion of objects (SQL DELETE). This table and its logic is implemented by the app [django-auditlog](https://github.com/jjkester/django-auditlog).
 
 ### 3. REST API written with Django REST framework
 
@@ -209,13 +224,13 @@ The tests were performed with helper classes provided by Django REST Framework, 
 
 The project can be run locally using the Django development server ([Run project in local server](#run-project-in-local-server)) or using Docker ([Run project with Docker](#run-project-with-docker)).
 
-The project was also deployed using AWS Elastic BeanStalk with a PostgreSQL instance ([Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk)).
+The project was also deployed using AWS Elastic BeanStalk with a PostgreSQL instance. The deployment steps are listed at [Deploy project in AWS Elastic BeanStalk](#deploy-project-in-aws-elastic-beanstalk).
 
-URL: http://django-env.papkc68gam.us-west-2.elasticbeanstalk.com/
+Hosted project URL: http://django-env.papkc68gam.us-west-2.elasticbeanstalk.com/
 
 ### 5. Frontend
 
-A Single Page App was implemented using ReactJS, Redux and WebPack.
+A Single Page App was implemented using [ReactJS](https://reactjs.org/), [Semantic-UI](https://semantic-ui.com), Redux and WebPack.
 
 The main routes of the app are illustrated below:
 
